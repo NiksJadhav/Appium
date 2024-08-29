@@ -1,4 +1,4 @@
-package Demo;
+package AndroidTC;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -10,10 +10,11 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.android.AndroidDriver;
 
-public class HandleTextBoxCheckboxRadioBtn {
+public class DropDownHandling {
 
-	public static void main(String[] args) throws MalformedURLException, InterruptedException {
+	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		// TODO Auto-generated method stub
+
 
 		//Gather Desired capabilities
 
@@ -32,7 +33,7 @@ public class HandleTextBoxCheckboxRadioBtn {
 		URL url = URI.create("http://127.0.0.1:4723/").toURL();
 
 		AndroidDriver driver = new AndroidDriver(url, capabilities);
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		System.out.println("Application Started");
 
 
@@ -45,21 +46,18 @@ public class HandleTextBoxCheckboxRadioBtn {
 		//click on light theme
 		driver.findElements(By.id("android:id/text1")).get(0).click();
 
-		//enter text in textbox
-		//io.appium.android.apis:id/edit
-		driver.findElement(By.id("io.appium.android.apis:id/edit")).sendKeys("Nikita Jadhav");
+		WebElement dropdown = driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"android:id/text1\"]"));
+		dropdown.click();
 
-		//checkbox
-		//io.appium.android.apis:id/check1
-		driver.findElement(By.id("io.appium.android.apis:id/check1")).click();
+		Thread.sleep(2000);
 
-
-		//radio button
-		driver.findElement(By.id("io.appium.android.apis:id/radio2")).click();
+		WebElement earthOption = driver.findElement(By.xpath("//android.widget.CheckedTextView[@resource-id=\"android:id/text1\" and @text=\"Earth\"]"));
+		earthOption.click();
 
 
-		Thread.sleep(5000);
-		driver.quit();//CLOSE SESSION
+		Thread.sleep(2000);
+		System.out.println("Session closed");
+		driver.quit();
 	}
 
 }

@@ -1,8 +1,9 @@
-package Demo;
+package AndroidTC;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,41 +13,40 @@ import  io.appium.java_client.TouchAction;
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 
-public class DragAndDropDemo {
+public class DragAndDropDemo 
+{
 
-	public static void main(String[] args) throws InterruptedException, MalformedURLException {
-		// TODO Auto-generated method stub
-
-		//Gather desired capabilities
+	public static void main(String[] args) throws MalformedURLException, InterruptedException 
+	{
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
-		capabilities.setCapability("deviceName","OnePlus AC2001");
-		capabilities.setCapability("platformname", "Android");     
-		capabilities.setCapability("automationName","uiautomator2");
-		capabilities.setCapability("platformversion", "12");
-		//io.appium.android.apis/io.appium.android.apis.ApiDemos
-		capabilities.setCapability("appPackage","io.appium.android.apis");
-		capabilities.setCapability("appActivity", "io.appium.android.apis.ApiDemos");
-
+		capabilities.setCapability("appium:deviceName","emulator-5554");
+		//capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
+		capabilities.setCapability("appium:automationName","UiAutomator2");
+		capabilities.setCapability("appium:platformName", "Android");     
+		//capabilities.setCapability("app", "C:\\Users\\nikit\\eclipse-workspace\\AppiumTutorial\\apkfile\\ApiDemos-debug.apk");
+		capabilities.setCapability("appium:platformVersion", "15");
+		capabilities.setCapability("appium:appPackage","io.appium.android.apis");
+		capabilities.setCapability("appium:appActivity", "io.appium.android.apis.ApiDemos");
+		
 
 		URL url = URI.create("http://127.0.0.1:4723/").toURL();
+		//URL url=new URL("http://127.0.0.1.4723/");
 
 		AndroidDriver driver = new AndroidDriver(url, capabilities);
-
-		Thread.sleep(2000);
-
-		System.out.println("Application Started");
-
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		//find view button
 		WebElement viewBtn =  driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Views\"]"));
 		viewBtn.click(); //perform click action on view button
 
 		//find drag and drop button
-		WebElement dragAndDropBtn =  driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Drag and Drop\"]"));
-		dragAndDropBtn.click(); //perform click action on view button
+		driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"Drag and Drop\"]")).click();
 
 		WebElement source =  driver.findElement(By.xpath("//android.view.View[@resource-id=\"io.appium.android.apis:id/drag_dot_1\"]"));
 
@@ -58,6 +58,13 @@ public class DragAndDropDemo {
 
 		action.longPress(longPressOptions().withElement(element(source))).moveTo(element(destination)).release().perform();
 
+		//OR
+		/*action.longPress(ElementOption.element(source))
+        .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+        .moveTo(ElementOption.element(destination))
+        .release()
+        .perform();*/
+		
 		Thread.sleep(2000);
 		driver.quit();//CLOSE SESSION
 	}

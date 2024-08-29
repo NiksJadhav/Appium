@@ -1,4 +1,4 @@
-package Demo;
+package AndroidTC;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -17,13 +17,14 @@ public class AppManagement {
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
-		capabilities.setCapability("deviceName","OnePlus AC2001");
+		capabilities.setCapability("deviceName","Vivo");
 		capabilities.setCapability("platformname", "Android");     
 		capabilities.setCapability("automationName","uiautomator2");
-		capabilities.setCapability("platformversion", "12");
+		capabilities.setCapability("platformversion", "11");
 
 
 		URL url = URI.create("http://127.0.0.1:4723/").toURL();
+		// URL url=new URL("http://127.0.0.1.4723/");
 
 		AndroidDriver driver = new AndroidDriver(url, capabilities);
 		Thread.sleep(2000);

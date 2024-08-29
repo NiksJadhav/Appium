@@ -1,4 +1,4 @@
-package Demo;
+package AndroidTC;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -8,13 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
-public class SwitchHandling {
+public class HandleTextBoxCheckboxRadioBtn {
 
 	public static void main(String[] args) throws MalformedURLException, InterruptedException {
 		// TODO Auto-generated method stub
+
 		//Gather Desired capabilities
 
 		DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -39,32 +39,27 @@ public class SwitchHandling {
 		//click on view button
 		driver.findElements(By.id("android:id/text1")).get(11).click();
 
-		//scroll on web page
-		String MobElementToScroll = "Switches";
+		//click on controls
+		driver.findElements(By.id("android:id/text1")).get(4).click();
 
-		WebElement SwitchElement = driver.findElement(AppiumBy.androidUIAutomator(
-				"new UiScrollable(new UiSelector().scrollable(true))" +
-						".scrollIntoView(new UiSelector().text(\"" + MobElementToScroll + "\"))"));
+		//click on light theme
+		driver.findElements(By.id("android:id/text1")).get(0).click();
 
-		SwitchElement.click();
+		//enter text in textbox
+		//io.appium.android.apis:id/edit
+		driver.findElement(By.id("io.appium.android.apis:id/edit")).sendKeys("Nikita Jadhav");
+
+		//checkbox
+		//io.appium.android.apis:id/check1
+		driver.findElement(By.id("io.appium.android.apis:id/check1")).click();
 
 
-		WebElement monitoredSwitch = driver.findElement(By.id("io.appium.android.apis:id/monitored_switch"));
-
-		if(monitoredSwitch.isSelected()==true)
-		{
-			System.out.println("Monitoried Switch is ON");
-		}
-		else
-		{
-			System.out.println("Monitoried Switch is OFF. Doing Switch On");
-			monitoredSwitch.click();
-		}
+		//radio button
+		driver.findElement(By.id("io.appium.android.apis:id/radio2")).click();
 
 
 		Thread.sleep(5000);
 		driver.quit();//CLOSE SESSION
-
 	}
 
 }

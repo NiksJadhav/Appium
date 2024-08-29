@@ -1,4 +1,4 @@
-package Demo;
+package AndroidTC;
 
 import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
 import static io.appium.java_client.touch.offset.ElementOption.element;

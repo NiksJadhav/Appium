@@ -1,4 +1,4 @@
-package Demo;
+package AndroidTC;
 
 import java.net.MalformedURLException;
 import java.net.URI;

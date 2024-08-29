@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite">
+	
+  <test name="Android">
+	  <!-- To Run multiple classes which are included in particular packag
+	  -->
+	  <packages>
+		  <package name="AndroidTC"></package>
+	  </packages>
+  </test> 
+  
+  <test name="iOS">
+	  <classes>
+		  <class name="iOSBaseClass_DC.iOSDesiredCapabilities"></class>
+	  </classes>
+  </test>
+  
+</suite> 
